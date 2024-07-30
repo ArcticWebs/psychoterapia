@@ -1,0 +1,130 @@
+@import "styles/breakpoints.scss";
+
+.navContainer {
+  height: 90px;
+  width: 100vw;
+
+  background-color: var(--bcg-color);
+
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  z-index: 5;
+
+  animation-name: show;
+  animation-duration: 0.5s;
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+
+    position: relative;
+
+    .navLinks {
+      display: flex;
+      flex-direction: column;
+
+      text-align: center;
+      gap: 30px;
+
+      li {
+        padding: 20px 40px;
+
+        @include media(">=laptop") {
+          padding: 0;
+        }
+      }
+
+      a {
+        padding: 20px 40px;
+        transition: color 0.4s;
+
+        @include media(">=laptop") {
+          cursor: pointer;
+
+          &:hover {
+            color: var(--cta-color);
+          }
+        }
+      }
+
+      @include media(">=laptop") {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 20px;
+      }
+    }
+  }
+
+  .logoBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .logo {
+      height: 35px;
+    }
+  }
+
+  .menu {
+    width: 80%;
+    height: 100%;
+
+    padding: 50px 0;
+
+    background-color: var(--bcg-color);
+    z-index: 2;
+
+    position: fixed;
+    top: 90px;
+    right: -100%;
+
+    transition: right 0.4s;
+
+    @include media(">=laptop") {
+      position: initial;
+      padding: 0;
+      width: fit-content;
+    }
+  }
+
+  .showMenu {
+    right: 0;
+  }
+
+  .navBtn {
+    @include media(">=laptop") {
+      display: none;
+    }
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.hidden {
+  animation-name: hide;
+  animation-duration: 0.5s;
+  top: -90px;
+}
+
+@keyframes hide {
+  from {
+    top: 0;
+  }
+  to {
+    top: -90px;
+  }
+}
+@keyframes show {
+  from {
+    top: -90px;
+  }
+  to {
+    top: 0;
+  }
+}
